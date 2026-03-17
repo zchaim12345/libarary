@@ -1,12 +1,16 @@
 name: Build Windows Installer
 
-on: [push]
+on:
+  push:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Install Inno Setup
         run: choco install innosetup -y
@@ -19,4 +23,3 @@ jobs:
         with:
           name: Windows-Installer
           path: Output/*.exe
-``
